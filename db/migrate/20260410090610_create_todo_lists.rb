@@ -7,6 +7,6 @@ class CreateTodoLists < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :todo_lists, [:user_id, :title, :created_at]
+    add_index :todo_lists, [:user_id, :created_at]
   end
 end

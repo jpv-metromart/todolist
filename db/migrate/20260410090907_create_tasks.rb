@@ -12,7 +12,5 @@ class CreateTasks < ActiveRecord::Migration[7.2]
     end
 
     add_index :tasks, [:todo_list_id, :due_date]
-    add_index :tasks, :completed
-    add_index :tasks, :completed_at
   end
 end
