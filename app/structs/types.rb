@@ -1,5 +1,7 @@
 require 'dry-types'
 
+# Global module Types with all custom types. No need to use Dry.Types everywhere else.
+# Which forces consistent type definitions across the app
 module Types
   include Dry.Types()
 

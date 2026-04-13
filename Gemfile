@@ -22,6 +22,7 @@ gem "dotenv-rails"
 # Dry::Struct
 gem "dry-struct"
 gem "dry-types"
+gem "dry-validation"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
