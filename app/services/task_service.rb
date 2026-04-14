@@ -34,6 +34,10 @@ class TaskService
   def self.validate(params)
     result = contract.call(params)
     return ResultData.failure(result.errors.to_h) if result.failure?
+
+    unless TodoList.exists?(params[:todo_list_id])
+      return ResultData.failure(todo_list_id: ['must be a valid todo list ID'])
+    end
     
     ResultData.success(TaskInput.new(result.to_h))
   end

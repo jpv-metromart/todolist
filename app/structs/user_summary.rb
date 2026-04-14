@@ -20,4 +20,11 @@ class UserSummary < Dry::Struct
       updated_at: user.updated_at
     )
   end
+
+  # Batch Factory: Creates an array of UserSummary instances from a collection of User models
+  # users = User.all => UserSummary.from_collection(users)
+  def self.all
+    # User.all.map { |user| from_model(user) }
+    User.includes(:todo_lists).map { |user| from_model(user) }
+  end
 end

@@ -1,9 +1,20 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:update]
+
+  def index
+    result = UserService.index
+    render json: result.value, status: :ok
+  end
+
+  def show
+    result = UserService.show(params[:id])
+    return render json: { errors: result.value }, status: :not_found if result.failure?
+    
+    render json: result.value, status: :ok
+  end
 
   def create
     result = UserService.create(user_params.to_h)
-
     return render json: { errors: result.value }, status: :unprocessable_entity if result.failure?
     
     render json: result.value, status: :created
@@ -19,7 +30,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = UserService.set_user(id: params[:id])
   end
 
   def user_params

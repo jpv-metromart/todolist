@@ -1,6 +1,20 @@
 class UserService
   ResultData = Result::Data
 
+  def self.set_user(params)
+    User.find_by(id: params[:id])
+  end
+
+  def self.index
+    ResultData.success(UserSummary.all)
+  end
+
+  def self.show(params)
+    user = User.find_by(id: params)
+    return ResultData.failure('User not found') unless user
+    ResultData.success(UserSummary.from_model(user))
+  end
+
   def self.create(params)
     validation = validate(params)
     return validation if validation.failure?
@@ -15,6 +29,11 @@ class UserService
 
     user.update!(validation.value.to_h)
     ResultData.success(UserSummary.from_model(user))
+  end
+
+  def self.delete(user)
+    user.destroy!
+    ResultData.success(nil)
   end
 
   private
