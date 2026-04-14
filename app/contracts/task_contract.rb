@@ -8,6 +8,10 @@ class TaskContract < Dry::Validation::Contract
   end
 
   # Custom validation rules for description and due_date fields
+  rule(:todo_list_id) do
+    key.failure('must be a valid todo list ID') unless TodoList.exists?(value)
+  end
+
   rule(:description) do
     key.failure('must not be empty') if value.strip.empty?
     key.failure('must be at least 1 character') if value.strip.length < 1
