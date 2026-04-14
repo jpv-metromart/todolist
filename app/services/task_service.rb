@@ -7,15 +7,14 @@ class TaskService
   # 5. If invalid, return validation errors
   # 6. Return .success or .failure
   
-  Contract = TaskContract.new
   ResultData = Result::Data
+  Contract = TaskContract.new
 
   def self.create(params)
     validation = validate(params)
     return validation if validation.failure?
-    
-    task_input = TaskInput.new(validation.value.to_h)
-    task = Task.create!(task_input.to_h)
+
+    task = Task.create!(validation.value.to_h)
     ResultData.success(TaskSummary.from_model(task))
   end
 
@@ -23,8 +22,7 @@ class TaskService
     validation = validate(params)
     return validation if validation.failure?
 
-    task_input = TaskInput.new(validation.value.to_h)
-    task.update!(task_input.to_h)
+    task.update!(validation.value.to_h)
     ResultData.success(TaskSummary.from_model(task))
   end
 
