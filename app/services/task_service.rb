@@ -8,7 +8,6 @@ class TaskService
   # 6. Return .success or .failure
   
   ResultData = Result::Data
-  Contract = TaskContract.new
 
   def self.create(params)
     validation = validate(params)
@@ -26,8 +25,14 @@ class TaskService
     ResultData.success(TaskSummary.from_model(task))
   end
 
+  private
+
+  def self.contract
+    @contract ||= TaskContract.new
+  end
+
   def self.validate(params)
-    result = Contract.call(params)
+    result = contract.call(params)
     return ResultData.failure(result.errors.to_h) if result.failure?
     
     ResultData.success(TaskInput.new(result.to_h))

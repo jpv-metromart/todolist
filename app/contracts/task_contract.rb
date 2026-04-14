@@ -1,3 +1,6 @@
+# Validation Contracts are strictly for validating input data when creating/updating records. 
+# They should not contain any logic related to database queries or model existence checks. 
+# Instead, they should focus solely on validating the structure and format of the input data.
 class TaskContract < Dry::Validation::Contract
   # Defines validation rules for task input when creating/updating a task.
   params do
@@ -14,7 +17,6 @@ class TaskContract < Dry::Validation::Contract
 
   rule(:description) do
     key.failure('must not be empty') if value.strip.empty?
-    key.failure('must be at least 1 character') if value.strip.length < 1
   end
 
   rule(:due_date) do

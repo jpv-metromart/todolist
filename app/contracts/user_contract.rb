@@ -1,3 +1,6 @@
+# Validation Contracts are strictly for validating input data when creating/updating records. 
+# They should not contain any logic related to database queries or model existence checks. 
+# Instead, they should focus solely on validating the structure and format of the input data.
 class UserContract < Dry::Validation::Contract
   params do
     required(:name).filled(:string)

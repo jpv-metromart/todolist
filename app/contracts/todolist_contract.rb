@@ -1,3 +1,6 @@
+# Validation Contracts are strictly for validating input data when creating/updating records. 
+# They should not contain any logic related to database queries or model existence checks. 
+# Instead, they should focus solely on validating the structure and format of the input data.
 class TodoListContract < Dry::Validation::Contract
   params do
     required(:title).filled(:string)
@@ -6,10 +9,5 @@ class TodoListContract < Dry::Validation::Contract
 
   rule(:title) do
     key.failure('must not be empty') if value.strip.empty?
-    key.failure('must be at least 1 character') if value.strip.length < 1
-  end
-
-  rule(:user_id) do
-    key.failure('must be a valid user ID') unless User.exists?(value)
   end
 end
