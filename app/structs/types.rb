@@ -1,7 +1,9 @@
-require 'dry-types'
+# require 'dry-types'
 
-# Global module Types with all custom types. No need to use Dry.Types everywhere else.
-# Which forces consistent type definitions across the app
+# Global module Types with all custom types. No need to use Dry.Types everywhere else,
+#   Which forces consistent type definitions across the app.
+# Doesn't apply to foldered namespaces like task/task_input.rb, 
+#   which needs to use Types::TaskInput for clarity
 module Types
   include Dry.Types()
 

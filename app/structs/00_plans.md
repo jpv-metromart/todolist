@@ -4,5 +4,8 @@ Use of Dry Structs:
 
 We need the following:
 - UserInput
+- UserSummary
 - TaskInput
 - TaskSummary
+- TodoListInput
+- TodoListSummary
