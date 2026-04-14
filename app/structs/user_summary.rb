@@ -7,6 +7,8 @@ class UserSummary < Dry::Struct
   attribute :created_at, Types::Time.optional
   attribute :updated_at, Types::Time.optional
 
+  # Factory: Creates a UserSummary from a User model instance
+  # user = User.find(some_id) => UserSummary.from_model(user)
   def self.from_model(user)
     new(
       id: user.id,
