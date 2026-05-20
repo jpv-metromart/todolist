@@ -7,6 +7,7 @@ class TaskService
   # 5. If invalid, return validation errors
   # 6. Return .success or .failure
   
+  # result.rb
   ResultData = Result::Data
 
   def self.create(params)

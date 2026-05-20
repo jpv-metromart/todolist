@@ -1,5 +1,5 @@
 module Result
-  # Lightweight value object representing the outcome of a service operation.
+  # Represents the outcome of a service operation.
   # Usage:
   #   Result::Data.success(payload) => #<Result::Data success=true, value=payload>
   #   Result::Data.failure(errors)  => #<Result::Data success=false, value=errors>

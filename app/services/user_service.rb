@@ -1,6 +1,7 @@
 class UserService
   ResultData = Result::Data
 
+  # Used by controller before_action to set @user for show/update actions
   def self.set_user(params)
     User.find_by(id: params[:id])
   end
@@ -12,6 +13,7 @@ class UserService
   def self.show(params)
     user = User.find_by(id: params)
     return ResultData.failure('User not found') unless user
+
     ResultData.success(UserSummary.from_model(user))
   end
 
